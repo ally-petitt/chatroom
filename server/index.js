@@ -32,13 +32,14 @@ io.on("connection", (socket) => {
 
     socket.on("sendMessage", (message, callback) => {
         const user = getUser(socket.id)
+        console.log(user)
 
         io.to(user.room).emit("message", { user: user.name, text: message })
-
+ 
         callback();
     })
 
-    socket.on("disconnect", () => {
+    socket.on("disconnect", () => { 
         console.log("user left the chat")
     })
 })
